@@ -1,7 +1,7 @@
 {
-  "name": "injectorservice",
+  "name": "amkmarket",
   "version": "1.0.0",
-  "description": "vita-tent",
+  "description": "Сайт компании по продаже автозапчастей АМК Маркет",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
