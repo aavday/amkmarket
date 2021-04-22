@@ -1,17 +1,15 @@
-"use strict";
+const body = document.querySelector('body');
+const header = document.querySelector('.header');
+const footer = document.querySelector('.footer'); // No scroll for body
 
-var body = document.querySelector('body');
-var header = document.querySelector('.header');
-var footer = document.querySelector('.footer'); // No scroll for body
-
-var bodyScrollOff = function bodyScrollOff() {
+const bodyScrollOff = () => {
   body.classList.add('lock');
   body.style.position = 'fixed';
   body.style.width = '100%';
-  body.style.top = "-".concat(offset, "px");
+  body.style.top = `-${offset}px`;
 };
 
-var bodyScrollOn = function bodyScrollOn() {
+const bodyScrollOn = () => {
   body.classList.remove('lock');
   body.style.position = '';
   body.style.width = '';
@@ -22,11 +20,11 @@ var bodyScrollOn = function bodyScrollOn() {
 }; // Mobile Menu
 
 
-var burger = document.querySelector('.burger');
-var nav = document.querySelector('.header__inner');
-var main = document.querySelector('.main');
-var offset = null;
-burger.addEventListener('click', function () {
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.header__inner');
+const main = document.querySelector('.main');
+let offset = null;
+burger.addEventListener('click', () => {
   burger.classList.toggle('active');
   nav.classList.toggle('active');
   main.classList.toggle('active');
@@ -44,25 +42,25 @@ burger.addEventListener('click', function () {
 
 }); // Scroll to sections
 
-var anchors = document.querySelectorAll('a[data-scroll]');
-var intro = document.querySelector('.intro');
+const anchors = document.querySelectorAll('a[data-scroll]');
+const intro = document.querySelector('.intro');
 
 if (!intro) {
-  anchors.forEach(function (anchor) {
-    var href = anchor.getAttribute('href');
-    var scroll = anchor.getAttribute('data-scroll').replace('.', '');
-    anchor.setAttribute('href', "".concat(href, "#").concat(scroll));
+  anchors.forEach(anchor => {
+    const href = anchor.getAttribute('href');
+    const scroll = anchor.getAttribute('data-scroll').replace('.', '');
+    anchor.setAttribute('href', `${href}#${scroll}`);
   });
 } else {
-  anchors.forEach(function (anchor) {
-    anchor.addEventListener('click', function (event) {
+  anchors.forEach(anchor => {
+    anchor.addEventListener('click', event => {
       event.preventDefault();
-      var margin = parseInt(getComputedStyle(main).marginTop);
-      var section = document.querySelector(anchor.getAttribute('data-scroll'));
-      var bodyRect = document.body.getBoundingClientRect().top;
-      var sectionRect = section.getBoundingClientRect().top;
-      var sectionPosition = sectionRect - bodyRect;
-      var marginPosition = sectionPosition - margin;
+      const margin = parseInt(getComputedStyle(main).marginTop);
+      const section = document.querySelector(anchor.getAttribute('data-scroll'));
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const sectionRect = section.getBoundingClientRect().top;
+      const sectionPosition = sectionRect - bodyRect;
+      const marginPosition = sectionPosition - margin;
 
       if (burger.classList.contains('active')) {
         offset = '';
@@ -74,7 +72,7 @@ if (!intro) {
       }
 
       if (marginPosition === 0) {
-        anchors.forEach(function (anchor) {
+        anchors.forEach(anchor => {
           anchor.classList.remove('active');
         });
         document.querySelector('a[data-scroll=".intro"]').classList.add('active');
@@ -90,34 +88,34 @@ if (!intro) {
 
 
 if (intro && pageYOffset < intro.scrollHeight / 2) {
-  anchors.forEach(function (anchor) {
+  anchors.forEach(anchor => {
     anchor.classList.remove('active');
   });
   document.querySelector('a[data-scroll=".intro"]').classList.add('active');
 }
 
-var catalogue = document.querySelector('.catalogue');
-var categories = document.querySelector('.categories');
-var cart = document.querySelector('.cart');
+const catalogue = document.querySelector('.catalogue');
+const categories = document.querySelector('.categories');
+const cart = document.querySelector('.cart');
 
 if (catalogue || categories) {
   document.querySelector('.header__nav-list-item a[href$="/kategorii"]').classList.add('active');
 } else if (cart) {
   document.querySelector('.header__nav-list-item a[href$="/korzina"]').classList.add('active');
 } else {
-  window.addEventListener('scroll', function () {
-    var sections = document.querySelectorAll('.section');
-    sections.forEach(function (section) {
-      var top = section.getBoundingClientRect().top + pageYOffset - 300;
-      var bottom = top + section.scrollHeight;
-      var scroll = window.pageYOffset;
-      var id = section.getAttribute('id');
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top + pageYOffset - 300;
+      const bottom = top + section.scrollHeight;
+      const scroll = window.pageYOffset;
+      const id = section.getAttribute('id');
 
       if (scroll > top && scroll < bottom) {
-        anchors.forEach(function (anchor) {
+        anchors.forEach(anchor => {
           anchor.classList.remove('active');
         });
-        document.querySelector("a[data-scroll=\".".concat(id, "\"]")).classList.add('active');
+        document.querySelector(`a[data-scroll=".${id}"]`).classList.add('active');
       }
     });
   });
@@ -125,7 +123,7 @@ if (catalogue || categories) {
 
 
 if (document.querySelector('.intro__slider')) {
-  var introSlider = tns({
+  const introSlider = tns({
     container: '.intro__slider',
     items: 1,
     autoplay: true,
@@ -137,7 +135,7 @@ if (document.querySelector('.intro__slider')) {
 }
 
 if (document.querySelector('.feedback__slider')) {
-  var feedbackSlider = tns({
+  const feedbackSlider = tns({
     container: '.feedback__slider',
     items: 1,
     autoplay: true,
@@ -148,8 +146,8 @@ if (document.querySelector('.feedback__slider')) {
   });
 }
 
-var catalogueImgsSliderInit = function catalogueImgsSliderInit() {
-  var catalogueImgsSlider = tns({
+const catalogueImgsSliderInit = () => {
+  const catalogueImgsSlider = tns({
     container: '.catalogue__card-imgs-slider',
     items: 1,
     autoplay: false,
@@ -161,10 +159,10 @@ var catalogueImgsSliderInit = function catalogueImgsSliderInit() {
 }; // Modal
 
 
-var modal = document.querySelector('.modal');
-var modalClose = document.querySelector('.modal-close');
+const modal = document.querySelector('.modal');
+const modalClose = document.querySelector('.modal-close');
 
-var modalOn = function modalOn() {
+const modalOn = () => {
   offset = pageYOffset;
   bodyScrollOff();
   modal.classList.toggle('active');
@@ -176,7 +174,7 @@ var modalOn = function modalOn() {
   }
 };
 
-var modalOff = function modalOff() {
+const modalOff = () => {
   bodyScrollOn();
   modal.classList.toggle('active');
 
@@ -188,46 +186,46 @@ var modalOff = function modalOff() {
 };
 
 if (modal) {
-  modalClose.addEventListener('click', function () {
+  modalClose.addEventListener('click', () => {
     modalOff();
     deliveryCompaniesDisplayNone();
   });
 }
 
-var modalLinks = document.querySelectorAll('.modal-link');
-modalLinks.forEach(function (link) {
-  link.addEventListener('click', function () {
+const modalLinks = document.querySelectorAll('.modal-link');
+modalLinks.forEach(link => {
+  link.addEventListener('click', () => {
     modalOn();
   });
 }); // Delivery calculators
 
-var deliveryCompanies = document.querySelectorAll('.delivery-company');
+const deliveryCompanies = document.querySelectorAll('.delivery-company');
 
 if (deliveryCompanies) {
-  deliveryCompanies.forEach(function (tag) {
-    tag.addEventListener('click', function () {
+  deliveryCompanies.forEach(tag => {
+    tag.addEventListener('click', () => {
       modalOn();
-      var company = tag.classList[0].replace('-logo', '');
-      document.querySelector(".".concat(company, "-iframe")).classList.remove('d-none');
+      const company = tag.classList[0].replace('-logo', '');
+      document.querySelector(`.${company}-iframe`).classList.remove('d-none');
     });
   });
 }
 
-var deliveryCompaniesDisplayNone = function deliveryCompaniesDisplayNone() {
-  var deliveryCompaniesIframes = document.querySelectorAll('.modal iframe');
-  deliveryCompaniesIframes.forEach(function (tag) {
+const deliveryCompaniesDisplayNone = () => {
+  const deliveryCompaniesIframes = document.querySelectorAll('.modal iframe');
+  deliveryCompaniesIframes.forEach(tag => {
     tag.classList.add('d-none');
   });
 }; // Creating array of all items
 
 
-var itemsArray = [];
+let itemsArray = [];
 
-var updateArray = function updateArray() {
-  var items = document.querySelectorAll('.catalogue__table-item');
+const updateArray = () => {
+  const items = document.querySelectorAll('.catalogue__table-item');
   itemsArray = [];
-  items.forEach(function (item) {
-    var itemsObj = {};
+  items.forEach(item => {
+    const itemsObj = {};
     itemsObj.name = item.querySelector('.catalogue__table-item-name').textContent.trim();
     itemsObj.price = item.querySelector('.catalogue__table-item-price').textContent.trim();
     itemsObj.article = item.querySelector('.catalogue__table-item-article').textContent.trim();
@@ -245,16 +243,14 @@ var updateArray = function updateArray() {
 
 updateArray(); // Catalogue sort
 
-var sortText = function sortText(prev, next) {
+const sortText = (prev, next) => {
   if (prev.name < next.name) return -1;
   if (prev.name < next.name) return 1;
 };
 
-var sortNum = function sortNum(a, b) {
-  return b.price - a.price;
-};
+const sortNum = (a, b) => b.price - a.price;
 
-var sortByName = function sortByName(sortMethod) {
+const sortByName = sortMethod => {
   if (sortMethod === 'name-down') {
     itemsArray.sort(sortText);
   } else {
@@ -264,7 +260,7 @@ var sortByName = function sortByName(sortMethod) {
   updateList(itemsArray);
 };
 
-var sortByPrice = function sortByPrice(sortMethod) {
+const sortByPrice = sortMethod => {
   if (sortMethod === 'price-down') {
     itemsArray.sort(sortNum);
   } else {
@@ -274,21 +270,36 @@ var sortByPrice = function sortByPrice(sortMethod) {
   updateList(itemsArray);
 };
 
-var catalogueTable = document.querySelector('.catalogue__table tbody');
+const catalogueTable = document.querySelector('.catalogue__table tbody');
 
-var updateList = function updateList(itemsArray) {
+const updateList = itemsArray => {
   catalogueTable.innerHTML = '';
-  itemsArray.forEach(function (item) {
-    catalogueTable.innerHTML += "\n      <tr class=\"catalogue__table-item ".concat(item.filtered, "\">\n        <td class=\"catalogue__table-item-thumb\">\n            <div style='background-image: ").concat(item.thumb, ";' alt=\"\"></div>\n        </td>\n        <td class=\"catalogue__table-item-name\">\n            ").concat(item.name, "\n        </td>\n        <td class=\"catalogue__table-item-article\">\n          ").concat(item.article, "\n        </td>\n        <td class=\"catalogue__table-item-price\">\n            ").concat(item.price, "<i class=\"ml-1 fas fa-ruble-sign\"></i>\n        </td>\n      </tr>\n    ");
+  itemsArray.forEach(item => {
+    catalogueTable.innerHTML += `
+      <tr class="catalogue__table-item ${item.filtered}">
+        <td class="catalogue__table-item-thumb">
+            <div style='background-image: ${item.thumb};' alt=""></div>
+        </td>
+        <td class="catalogue__table-item-name">
+            ${item.name}
+        </td>
+        <td class="catalogue__table-item-article">
+          ${item.article}
+        </td>
+        <td class="catalogue__table-item-price">
+            ${item.price}<i class="ml-1 fas fa-ruble-sign"></i>
+        </td>
+      </tr>
+    `;
   });
   itemsAddListener();
 };
 
-var sortPriceBtn = document.querySelector('.catalogue__sort-by-price');
-var sortNameBtn = document.querySelector('.catalogue__sort-by-name');
+const sortPriceBtn = document.querySelector('.catalogue__sort-by-price');
+const sortNameBtn = document.querySelector('.catalogue__sort-by-name');
 
 if (sortNameBtn) {
-  sortNameBtn.addEventListener('click', function (event) {
+  sortNameBtn.addEventListener('click', event => {
     event.preventDefault();
     sortPriceBtn.classList.remove('down', 'up');
 
@@ -304,7 +315,7 @@ if (sortNameBtn) {
 }
 
 if (sortPriceBtn) {
-  sortPriceBtn.addEventListener('click', function (event) {
+  sortPriceBtn.addEventListener('click', event => {
     event.preventDefault();
     sortNameBtn.classList.remove('down', 'up');
 
@@ -320,76 +331,75 @@ if (sortPriceBtn) {
 } // Catalogue search
 
 
-var filterItems = function filterItems(inputText) {
-  Array.from(catalogueTable.children).filter(function (item) {
-    return !item.textContent.toLowerCase().includes(inputText);
-  }).forEach(function (item) {
-    return item.classList.add('filtered');
-  });
-  Array.from(catalogueTable.children).filter(function (item) {
-    return item.textContent.toLowerCase().includes(inputText);
-  }).forEach(function (item) {
-    return item.classList.remove('filtered');
-  });
+const filterItems = inputText => {
+  Array.from(catalogueTable.children).filter(item => !item.textContent.toLowerCase().includes(inputText)).forEach(item => item.classList.add('filtered'));
+  Array.from(catalogueTable.children).filter(item => item.textContent.toLowerCase().includes(inputText)).forEach(item => item.classList.remove('filtered'));
 };
 
-var search = document.querySelector('.catalogue__search');
+const search = document.querySelector('.catalogue__search');
 
 if (search) {
-  search.addEventListener('keyup', function () {
-    var inputText = search.value.trim().toLowerCase();
+  search.addEventListener('keyup', () => {
+    const inputText = search.value.trim().toLowerCase();
     filterItems(inputText);
     updateArray();
   });
 } // Catalogue card
 
 
-var catalogueCardEmpty = document.querySelector('.catalogue__card-empty');
-var catalogueCardContent = document.querySelector('.catalogue__card-content');
-var catalogueCardArticle = document.querySelector('.catalogue__card-article');
-var catalogueCardName = document.querySelector('.catalogue__card-name');
-var catalogueCardImgs = document.querySelector('.catalogue__card-imgs');
-var catalogueCardPrice = document.querySelector('.catalogue__card-price');
-var catalogueCardDescription = document.querySelector('.catalogue__card-description');
-var catalogueCardAmount = document.querySelector('.catalogue__card-add-to-cart-amount');
+const catalogueCardEmpty = document.querySelector('.catalogue__card-empty');
+const catalogueCardContent = document.querySelector('.catalogue__card-content');
+const catalogueCardArticle = document.querySelector('.catalogue__card-article');
+const catalogueCardName = document.querySelector('.catalogue__card-name');
+const catalogueCardImgs = document.querySelector('.catalogue__card-imgs');
+const catalogueCardPrice = document.querySelector('.catalogue__card-price');
+const catalogueCardDescription = document.querySelector('.catalogue__card-description');
+const catalogueCardAmount = document.querySelector('.catalogue__card-add-to-cart-amount');
 
-var updateCard = function updateCard(itemArticle, itemName, itemImgsArray, itemPrice, itemDescription) {
+const updateCard = (itemArticle, itemName, itemImgsArray, itemPrice, itemDescription) => {
   catalogueCardAmount.value = 1;
   catalogueCardEmpty.classList.add('d-none');
   catalogueCardContent.classList.remove('d-none');
   catalogueCardArticle.textContent = itemArticle;
   catalogueCardName.textContent = itemName;
-  catalogueCardPrice.innerHTML = "".concat(itemPrice, "<i class=\"ml-1 fas fa-ruble-sign\"></i>");
+  catalogueCardPrice.innerHTML = `${itemPrice}<i class="ml-1 fas fa-ruble-sign"></i>`;
   catalogueCardDescription.textContent = itemDescription;
-  catalogueCardImgs.innerHTML = "\n    <div class=\"catalogue__card-imgs-slider slider\">\n\n    </div>\n  ";
-  var catalogueCardImgsSlider = document.querySelector('.catalogue__card-imgs-slider');
-  itemImgsArray.forEach(function (img) {
-    catalogueCardImgsSlider.innerHTML += "\n      <div class=\"item\">\n        <img src=\"".concat(img, "\" alt=\"\" class=\"catalogue__card-img\">\n      </div>\n    ");
+  catalogueCardImgs.innerHTML = `
+    <div class="catalogue__card-imgs-slider slider">
+
+    </div>
+  `;
+  const catalogueCardImgsSlider = document.querySelector('.catalogue__card-imgs-slider');
+  itemImgsArray.forEach(img => {
+    catalogueCardImgsSlider.innerHTML += `
+      <div class="item">
+        <img src="${img}" alt="" class="catalogue__card-img">
+      </div>
+    `;
   });
   catalogueImgsSliderInit();
   itemAdded();
 };
 
-var itemsAddListener = function itemsAddListener() {
-  var items = document.querySelectorAll('.catalogue__table-item');
-  var itemArticle = '';
-  var itemName = '';
-  var itemImgsArray = [];
-  var itemPrice = '';
-  var itemDescription = '';
-  var itemsInfo = document.querySelectorAll('.catalogue__info-item');
-  items.forEach(function (item) {
-    item.addEventListener('click', function () {
+const itemsAddListener = () => {
+  const items = document.querySelectorAll('.catalogue__table-item');
+  let itemArticle = '';
+  let itemName = '';
+  let itemImgsArray = [];
+  let itemPrice = '';
+  let itemDescription = '';
+  const itemsInfo = document.querySelectorAll('.catalogue__info-item');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
       itemArticle = item.querySelector('.catalogue__table-item-article').textContent.trim();
       itemName = item.querySelector('.catalogue__table-item-name').textContent.trim();
       itemPrice = item.querySelector('.catalogue__table-item-price').textContent.trim();
-      console.log(itemPrice);
-      itemsInfo.forEach(function (item) {
+      itemsInfo.forEach(item => {
         if (item.querySelector('.catalogue__info-article').textContent.trim() === itemArticle && item.querySelector('.catalogue__info-name').textContent.trim() === itemName && item.querySelector('.catalogue__info-price').textContent.trim() === itemPrice) {
           itemDescription = item.querySelector('.catalogue__info-description').textContent;
-          var itemImgs = item.querySelectorAll('.catalogue__info-img');
+          let itemImgs = item.querySelectorAll('.catalogue__info-img');
           itemImgsArray = [];
-          itemImgs.forEach(function (img) {
+          itemImgs.forEach(img => {
             itemImgsArray.push(img.textContent);
           });
         }
@@ -403,18 +413,18 @@ var itemsAddListener = function itemsAddListener() {
 
 itemsAddListener(); // Add to cart
 
-var addToCartLink = document.querySelector('.catalogue__card-add-to-cart');
-var addToCartAmount = document.querySelector('.catalogue__card-add-to-cart-amount');
-var addToCartArray = [];
+const addToCartLink = document.querySelector('.catalogue__card-add-to-cart');
+const addToCartAmount = document.querySelector('.catalogue__card-add-to-cart-amount');
+let addToCartArray = [];
 
 if (JSON.parse(localStorage.getItem('cart-items'))) {
   addToCartArray = JSON.parse(localStorage.getItem('cart-items'));
 }
 
-var addToCartObj = {};
+let addToCartObj = {};
 
 if (addToCartLink) {
-  addToCartLink.addEventListener('click', function () {
+  addToCartLink.addEventListener('click', () => {
     addToCartObj = {};
     addToCartObj.name = catalogueCardName.textContent.trim();
     addToCartObj.price = catalogueCardPrice.textContent.trim();
@@ -422,9 +432,9 @@ if (addToCartLink) {
     addToCartObj.article = catalogueCardArticle.textContent;
 
     if (JSON.stringify(addToCartArray).includes(addToCartObj.article)) {
-      var index = null;
+      let index = null;
 
-      for (var i = 0; i < addToCartArray.length; i++) {
+      for (let i = 0; i < addToCartArray.length; i++) {
         if (addToCartArray[i].article.includes(addToCartObj.article)) {
           break;
         }
@@ -442,7 +452,7 @@ if (addToCartLink) {
   });
 }
 
-var itemAdded = function itemAdded() {
+const itemAdded = () => {
   if (JSON.stringify(addToCartArray).includes(catalogueCardArticle.textContent)) {
     catalogueCardContent.querySelector('.fa-shopping-cart').classList.add('d-none');
     catalogueCardContent.querySelector('.fa-check').classList.remove('d-none');
@@ -453,10 +463,10 @@ var itemAdded = function itemAdded() {
 }; // Cart
 
 
-var cartTable = document.querySelector('.cart__table');
+const cartTable = document.querySelector('.cart__table');
 
 if (cart) {
-  var checkIfCartEmpty = function checkIfCartEmpty() {
+  const checkIfCartEmpty = () => {
     if (addToCartArray.length === 0) {
       cart.querySelector('.cart-empty').classList.remove('d-none');
       cart.querySelector('.cart-active').classList.add('d-none');
@@ -466,61 +476,80 @@ if (cart) {
   };
 
   checkIfCartEmpty();
-  var items = JSON.parse(localStorage.getItem('cart-items'));
-  items.forEach(function (item) {
-    cartTable.innerHTML += "\n      <tr class=\"cart__table-item\">\n        <td class=\"cart__table-item-name\">\n            ".concat(item.name, "\n        </td>\n        <td class=\"cart__table-item-article\">\n            ").concat(item.article, "\n        </td>\n        <td class=\"cart__table-item-price\">\n            ").concat(item.price, "<i class=\"ml-1 fas fa-ruble-sign\"></i>\n        </td>\n        <td class=\"cart__table-item-quantity\">\n          <input type=\"number\" class=\"cart__table-item-quantity-input\" name=\"amount\" value=\"").concat(item.amount, "\" min=\"1\">\n        </td>\n        <td class=\"cart__table-item-delete\">\n          <i class=\"fas fa-times\"></i>\n        </td>\n      </tr>\n    ");
+  const items = JSON.parse(localStorage.getItem('cart-items'));
+  items.forEach(item => {
+    cartTable.innerHTML += `
+      <tr class="cart__table-item">
+        <td class="cart__table-item-name">
+            ${item.name}
+        </td>
+        <td class="cart__table-item-article">
+            ${item.article}
+        </td>
+        <td class="cart__table-item-price">
+            ${item.price}<i class="ml-1 fas fa-ruble-sign"></i>
+        </td>
+        <td class="cart__table-item-quantity">
+          <input type="number" class="cart__table-item-quantity-input" name="amount" value="${item.amount}" min="1">
+        </td>
+        <td class="cart__table-item-delete">
+          <i class="fas fa-times"></i>
+        </td>
+      </tr>
+    `;
   });
-  var cartTableItems = document.querySelectorAll('.cart__table-item');
-  cartTableItems.forEach(function (item) {
-    var itemAmount = item.querySelector('.cart__table-item-quantity');
-    itemAmount.addEventListener('change', function () {
+  const cartTableItems = document.querySelectorAll('.cart__table-item');
+  cartTableItems.forEach(item => {
+    const itemAmount = item.querySelector('.cart__table-item-quantity');
+    itemAmount.addEventListener('change', () => {
       updateAmount(itemAmount.parentElement, itemAmount.querySelector('input').value);
       updateTotalCost();
     });
-    var itemDeleteBtn = item.querySelector('.cart__table-item-delete');
-    itemDeleteBtn.addEventListener('click', function (event) {
+    const itemDeleteBtn = item.querySelector('.cart__table-item-delete');
+    itemDeleteBtn.addEventListener('click', event => {
       event.preventDefault();
       deleteCartItem(itemDeleteBtn.parentElement);
       updateTotalCost();
     });
   });
 
-  var updateForm = function updateForm() {
-    var cartTableItems = document.querySelectorAll('.cart__table-item');
-    var cartOrderInfoTextarea = document.querySelector('.cart__order-form-info');
-    var totalCost = document.querySelector('.cart__order-total-cost').textContent;
+  const updateForm = () => {
+    const cartTableItems = document.querySelectorAll('.cart__table-item');
+    const cartOrderInfoTextarea = document.querySelector('.cart__order-form-info');
+    const totalCost = document.querySelector('.cart__order-total-cost').textContent;
     cartOrderInfoTextarea.value = '';
-    cartTableItems.forEach(function (item) {
-      var itemName = item.querySelector('.cart__table-item-name').textContent.trim();
-      var itemArticle = item.querySelector('.cart__table-item-article').textContent.trim();
-      var itemPrice = item.querySelector('.cart__table-item-price').textContent.trim();
-      var itemAmount = item.querySelector('.cart__table-item-quantity-input').value;
-      cartOrderInfoTextarea.value += "\u041D\u0430\u0437\u0432.: ".concat(itemName, ", \u0410\u0440\u0442.: ").concat(itemArticle, ", \u0426\u0435\u043D\u0430 \u0437\u0430 \u0448\u0442.: ").concat(itemPrice, ", \u041A\u043E\u043B-\u0432\u043E: ").concat(itemAmount, "\n");
+    cartTableItems.forEach(item => {
+      const itemName = item.querySelector('.cart__table-item-name').textContent.trim();
+      const itemArticle = item.querySelector('.cart__table-item-article').textContent.trim();
+      const itemPrice = item.querySelector('.cart__table-item-price').textContent.trim();
+      const itemAmount = item.querySelector('.cart__table-item-quantity-input').value;
+      cartOrderInfoTextarea.value += `Назв.: ${itemName}, Арт.: ${itemArticle}, Цена за шт.: ${itemPrice}, Кол-во: ${itemAmount}
+`;
     });
-    cartOrderInfoTextarea.value += "\u0418\u0442\u043E\u0433\u043E: ".concat(totalCost);
+    cartOrderInfoTextarea.value += `Итого: ${totalCost}`;
   };
 
-  var totalCostTag = document.querySelector('.cart__order-total-cost');
+  const totalCostTag = document.querySelector('.cart__order-total-cost');
 
-  var updateTotalCost = function updateTotalCost() {
-    var cartTableItems = document.querySelectorAll('.cart__table-item');
-    var totalCost = 0;
-    cartTableItems.forEach(function (item) {
-      var itemPrice = item.querySelector('.cart__table-item-price').textContent.trim();
-      var itemAmount = item.querySelector('.cart__table-item-quantity-input').value;
+  const updateTotalCost = () => {
+    const cartTableItems = document.querySelectorAll('.cart__table-item');
+    let totalCost = 0;
+    cartTableItems.forEach(item => {
+      const itemPrice = item.querySelector('.cart__table-item-price').textContent.trim();
+      const itemAmount = item.querySelector('.cart__table-item-quantity-input').value;
       totalCost += itemPrice * itemAmount;
     });
-    totalCostTag.innerHTML = "".concat(totalCost, "<i class=\"ml-1 fas fa-ruble-sign\"></i>");
+    totalCostTag.innerHTML = `${totalCost}<i class="ml-1 fas fa-ruble-sign"></i>`;
     updateForm();
   };
 
   updateTotalCost();
 
-  var updateAmount = function updateAmount(item, amount) {
-    var index = 0;
+  const updateAmount = (item, amount) => {
+    let index = 0;
 
-    for (var i = 0; i < addToCartArray.length; i++) {
-      var itemArticle = item.querySelector('.cart__table-item-article').textContent.trim();
+    for (let i = 0; i < addToCartArray.length; i++) {
+      const itemArticle = item.querySelector('.cart__table-item-article').textContent.trim();
 
       if (addToCartArray[i].article.includes(itemArticle)) {
         break;
@@ -535,12 +564,12 @@ if (cart) {
     updateForm();
   };
 
-  var deleteCartItem = function deleteCartItem(item) {
+  const deleteCartItem = item => {
     item.remove();
-    var index = 0;
+    let index = 0;
 
-    for (var i = 0; i < addToCartArray.length; i++) {
-      var itemArticle = item.querySelector('.cart__table-item-article').textContent.trim();
+    for (let i = 0; i < addToCartArray.length; i++) {
+      const itemArticle = item.querySelector('.cart__table-item-article').textContent.trim();
 
       if (addToCartArray[i].article.includes(itemArticle)) {
         break;
