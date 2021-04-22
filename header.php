@@ -79,6 +79,7 @@
                 <span class="header__copyright"><?php the_field('copyright', 15); ?></span>
             </div>
         </div>
+        <a href="<?php echo get_home_url(); ?>/korzina"><i class="fas fa-shopping-cart d-xl-none"></i></a>
     </header>
 
     <main class="main">
