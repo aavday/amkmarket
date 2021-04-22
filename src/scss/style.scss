@@ -211,10 +211,7 @@ i {
     }
 
     &.fa-shopping-cart {
-        position: absolute;
-        top: 18%;
-        right: 15px;
-        font-size: 50px;
+        font-size: 30px;
     }
 }
 
@@ -279,6 +276,13 @@ i {
 
     &__copyright {
         font-size: 0.53rem;
+    }
+
+    .fa-shopping-cart {
+        position: absolute;
+        top: 18%;
+        right: 15px;
+        font-size: 50px;
     }
 }
 
