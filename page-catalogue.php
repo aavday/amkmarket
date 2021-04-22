@@ -42,7 +42,11 @@ Template name: Каталог
                             </script>
                             <?
 
-                                $category_name = $_GET['category'];
+                                if ($_GET['category']) {
+                                    $category_name = $_GET['category'];
+                                } else {
+                                    $category_name = 'products';
+                                }
 
                                 $posts = get_posts( array(
                                     'numberposts'      => -1,
