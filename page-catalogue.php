@@ -1,10 +1,10 @@
-<?php 
+<? 
 /*
 Template name: Каталог
 */
 ?>
 
-<?php get_header(); ?>
+<? get_header(); ?>
         <section class="section catalogue">
             <div class="d-flex flex-md-row flex-column">
                 <div class="catalogue__list-wrapper">
@@ -40,7 +40,7 @@ Template name: Каталог
                                 const chosenCategory = localStorage.getItem("category");
                                 document.querySelector(".catalogue__category-name").innerHTML = chosenCategory;
                             </script>
-                            <?php
+                            <?
 
                                 $category_name = $_GET['category'];
 
@@ -59,20 +59,20 @@ Template name: Каталог
 
                                     <tr class="catalogue__table-item">
                                         <td class="catalogue__table-item-thumb">
-                                            <div style="background-image: url('<?php the_field('product_thumb'); ?>');" alt=""></div>
+                                            <div style="background-image: url('<? the_field('product_thumb'); ?>');" alt=""></div>
                                         </td>
                                         <td class="catalogue__table-item-name">
-                                            <?php the_field('product_name'); ?>
+                                            <? the_field('product_name'); ?>
                                         </td>
                                         <td class="catalogue__table-item-article">
-                                            <?php the_field('product_article'); ?>
+                                            <? the_field('product_article'); ?>
                                         </td>
                                         <td class="catalogue__table-item-price">
-                                            <?php the_field('product_price'); ?><i class="ml-1 fas fa-ruble-sign"></i>
+                                            <? the_field('product_price'); ?><i class="ml-1 fas fa-ruble-sign"></i>
                                         </td>
                                     </tr>
 
-                                    <?php 
+                                    <? 
                                 }
 
                                 wp_reset_postdata(); // сброс
@@ -100,10 +100,10 @@ Template name: Каталог
                             <p class="catalogue__card-description"></p>
                             <p>Рассчитать стоимость доставки:</p>
                             <div class="catalogue__card-delivery-companies">
-                                <img src="<?php echo bloginfo('template_url'); ?>/dist/assets/img/cdek_logo.jpg" class="cdek-logo delivery-company mr-1 mb-1">
-                                <img src="<?php echo bloginfo('template_url'); ?>/dist/assets/img/pek_logo.jpg" class="pek-logo delivery-company mr-1 mb-1">
-                                <img src="<?php echo bloginfo('template_url'); ?>/dist/assets/img/dellinii_logo.png" class="dellinii-logo delivery-company mr-1 mb-1">
-                                <img src="<?php echo bloginfo('template_url'); ?>/dist/assets/img/baikal-service_logo.png" class="baikal-service-logo delivery-company mr-1 mb-1">
+                                <img src="<? echo bloginfo('template_url'); ?>/dist/assets/img/cdek_logo.jpg" class="cdek-logo delivery-company mr-1 mb-1">
+                                <img src="<? echo bloginfo('template_url'); ?>/dist/assets/img/pek_logo.jpg" class="pek-logo delivery-company mr-1 mb-1">
+                                <img src="<? echo bloginfo('template_url'); ?>/dist/assets/img/dellinii_logo.png" class="dellinii-logo delivery-company mr-1 mb-1">
+                                <img src="<? echo bloginfo('template_url'); ?>/dist/assets/img/baikal-service_logo.png" class="baikal-service-logo delivery-company mr-1 mb-1">
                             </div>
                             <div class="modal">
                                 <div class="container d-flex justify-content-center">
@@ -120,46 +120,37 @@ Template name: Каталог
                     </div>
                 </div>
                 <div class="catalogue__info d-none">
-                    <?php                                     
-                        $posts = get_posts( array(
-                            'numberposts'      => -1,
-                            'category_name'    => $category_name,
-                            'orderby'          => 'date',
-                            'order'            => 'ASC',
-                            'post_type'        => 'post',
-                            'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
-                        ) );
-
+                    <?                                  
                         foreach( $posts as $post ){
                             setup_postdata($post);
                             ?>
 
                             <div class="catalogue__info-item">
                                 <div class="catalogue__info-article">
-                                    <?php the_field('product_article'); ?>
+                                    <? the_field('product_article'); ?>
                                 </div>
                                 <div class="catalogue__info-imgs">
-                                    <?php
+                                    <?
                                         $images = acf_photo_gallery('product_imgs', $post->ID);;
                                         foreach($images as $image):
                                             ?>
-                                            <span class="catalogue__info-img"><?php echo $image["full_image_url"] ?></span>
-                                            <?php
+                                            <span class="catalogue__info-img"><? echo $image["full_image_url"] ?></span>
+                                            <?
                                         endforeach;
                                     ?>
                                 </div>
                                 <div class="catalogue__info-description">
-                                    <?php the_field('product_description'); ?>
+                                    <? the_field('product_description'); ?>
                                 </div>
                                 <div class="catalogue__info-name">
-                                    <?php the_field('product_name'); ?>
+                                    <? the_field('product_name'); ?>
                                 </div>
                                 <div class="catalogue__info-price">
-                                    <?php the_field('product_price'); ?>
+                                    <? the_field('product_price'); ?>
                                 </div>
                             </div>
 
-                            <?php 
+                            <? 
                         }
 
                         wp_reset_postdata(); // сброс
@@ -167,4 +158,4 @@ Template name: Каталог
                 </div>
             </div>
         </section>
-<?php get_footer(); ?>
+<? get_footer(); ?>
