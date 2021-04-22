@@ -620,8 +620,21 @@ i {
             overflow-y: scroll;
         }
 
+        &-col {
+            &-1 {
+                width: 7%;
+            }
+
+            &-2 {
+                width: 60%;
+            }
+
+            &-4 {
+                width: 80px;
+            }
+        }
+
         &-item {
-            width: 100%;
             cursor: pointer;
 
             &:hover {
@@ -641,11 +654,6 @@ i {
             &-price,
             &-article {
                 white-space: nowrap;
-            }
-
-            &-price,
-            &-article {
-                text-align: right;
             }
 
             &-article {
@@ -1222,8 +1230,14 @@ i {
     }
 
     .catalogue {
-        &__table-item-thumb div {
-            height: 20px;
+        &__table {
+            &-col-4 {
+                width: 65px;
+            }
+
+            &-item-thumb div {
+                height: 20px;
+            }
         }
     }
 }
