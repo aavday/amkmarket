@@ -295,6 +295,8 @@ const updateList = newItemsArray => {
     item.querySelector('.catalogue__table-item-name').innerText = newItemsArray[i].name;
     item.querySelector('.catalogue__table-item-article').innerText = newItemsArray[i].article;
     item.querySelector('.catalogue__table-item-price span').innerText = newItemsArray[i].price;
+
+    i++;
   })
 };
 
