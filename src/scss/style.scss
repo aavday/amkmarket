@@ -691,8 +691,14 @@ i {
         }
 
         &-imgs {
-            .tns-nav {
-                margin: 15px;
+            .tns {
+                &-item {
+                    text-align: center;
+                }
+
+                &-nav {
+                    margin: 15px;
+                }
             }
         }
 

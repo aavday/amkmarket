@@ -42,7 +42,11 @@ Template name: Каталог
                             </script>
                             <?
 
-                                $category_name = $_GET['category'];
+                                if ($_GET['category']) {
+                                    $category_name = $_GET['category'];
+                                } else {
+                                    $category_name = 'products';
+                                }
 
                                 $posts = get_posts( array(
                                     'numberposts'      => -1,
@@ -68,7 +72,7 @@ Template name: Каталог
                                             <? the_field('product_article'); ?>
                                         </td>
                                         <td class="catalogue__table-item-price">
-                                            <? the_field('product_price'); ?><i class="ml-1 fas fa-ruble-sign"></i>
+                                            <span><? the_field('product_price'); ?></span><i class="ml-1 fas fa-ruble-sign"></i>
                                         </td>
                                     </tr>
 
