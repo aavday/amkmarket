@@ -219,25 +219,18 @@ const deliveryCompaniesDisplayNone = () => {
 }; // Creating array of all items
 
 
-let itemsArray = [];
+let newItemsArray = [];
 
 const updateArray = () => {
   const items = document.querySelectorAll('.catalogue__table-item');
-  itemsArray = [];
+  newItemsArray = [];
   items.forEach(item => {
     const itemsObj = {};
     itemsObj.name = item.querySelector('.catalogue__table-item-name').textContent.trim();
     itemsObj.price = item.querySelector('.catalogue__table-item-price').textContent.trim();
     itemsObj.article = item.querySelector('.catalogue__table-item-article').textContent.trim();
     itemsObj.thumb = item.querySelector('.catalogue__table-item-thumb div').style.backgroundImage;
-
-    if (item.classList.contains('filtered')) {
-      itemsObj.filtered = 'filtered';
-    } else {
-      itemsObj.filtered = '';
-    }
-
-    itemsArray.push(itemsObj);
+    newItemsArray.push(itemsObj);
   });
 };
 
@@ -252,47 +245,35 @@ const sortNum = (a, b) => b.price - a.price;
 
 const sortByName = sortMethod => {
   if (sortMethod === 'name-down') {
-    itemsArray.sort(sortText);
+    newItemsArray.sort(sortText);
   } else {
-    itemsArray.sort(sortText).reverse();
+    newItemsArray.sort(sortText).reverse();
   }
 
-  updateList(itemsArray);
+  updateList(newItemsArray);
 };
 
 const sortByPrice = sortMethod => {
   if (sortMethod === 'price-down') {
-    itemsArray.sort(sortNum);
+    newItemsArray.sort(sortNum);
   } else {
-    itemsArray.sort(sortNum).reverse();
+    newItemsArray.sort(sortNum).reverse();
   }
 
-  updateList(itemsArray);
+  updateList(newItemsArray);
 };
 
 const catalogueTable = document.querySelector('.catalogue__table tbody');
 
-const updateList = itemsArray => {
-  catalogueTable.innerHTML = '';
-  itemsArray.forEach(item => {
-    catalogueTable.innerHTML += `
-      <tr class="catalogue__table-item ${item.filtered}">
-        <td class="catalogue__table-item-thumb">
-            <div style='background-image: ${item.thumb};' alt=""></div>
-        </td>
-        <td class="catalogue__table-item-name">
-            ${item.name}
-        </td>
-        <td class="catalogue__table-item-article">
-          ${item.article}
-        </td>
-        <td class="catalogue__table-item-price">
-            ${item.price}<i class="ml-1 fas fa-ruble-sign"></i>
-        </td>
-      </tr>
-    `;
+const updateList = newItemsArray => {
+  i = 0;
+  const currentItems = document.querySelectorAll('.catalogue__table-item');
+  currentItems.forEach(item => {
+    item.querySelector('.catalogue__table-item-thumb div').style.backgroundImage = newItemsArray[i].thumb;
+    item.querySelector('.catalogue__table-item-name').innerText = newItemsArray[i].name;
+    item.querySelector('.catalogue__table-item-article').innerText = newItemsArray[i].article;
+    item.querySelector('.catalogue__table-item-price span').innerText = newItemsArray[i].price;
   });
-  itemsAddListener();
 };
 
 const sortPriceBtn = document.querySelector('.catalogue__sort-by-price');
