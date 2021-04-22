@@ -74,8 +74,6 @@ Template name: Каталог
 
                                     <? 
                                 }
-
-                                wp_reset_postdata(); // сброс
                             ?>
 
                         </table>
@@ -122,7 +120,6 @@ Template name: Каталог
                 <div class="catalogue__info d-none">
                     <?                                  
                         foreach( $posts as $post ){
-                            setup_postdata($post);
                             ?>
 
                             <div class="catalogue__info-item">
