@@ -20,7 +20,7 @@ Template name: Каталог
                         <table class="catalogue__table" cellspacing="0" cellpadding="2px">
                             <col class="catalogue__table-col-1" width="7%">
                             <col class="catalogue__table-col-2" width="60%">
-                            <col class="catalogue__table-col-3" width="30%">
+                            <col class="catalogue__table-col-3" width="20%">
                             <col class="catalogue__table-col-4">
                             <thead>
                                 <tr>
