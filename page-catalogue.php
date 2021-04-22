@@ -17,7 +17,11 @@ Template name: Каталог
                         <a href="" class="mx-md-2 mx-3 catalogue__sort-by-name">алфавиту</a>
                     </span>
                     <div class="catalogue__table-wrapper">
-                        <table class="catalogue__table">
+                        <table class="catalogue__table" cellspacing="0" cellpadding="2px">
+                            <col class="catalogue__table-col-1" width="7%">
+                            <col class="catalogue__table-col-2" width="60%"
+                            <col class="catalogue__table-col-3" width="30%">
+                            <col class="catalogue__table-col-4">
                             <thead>
                                 <tr>
                                     <th colspan="2">
