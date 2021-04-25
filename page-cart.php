@@ -10,7 +10,7 @@ Template name: Корзина
     <h1 class="section-title">КОРЗИНА</h1>
     <div class="cart-empty d-none">
         <i class="fas fa-shopping-cart"></i>
-        <h2>Ваша корзина пока пуста </br><a href="<?php echo get_home_url(); ?>/katalog" class="page-404__link">Перейти в каталог</a></h2>
+        <h2>Ваша корзина пока пуста </br><a href="<?php echo get_home_url(); ?>/kategorii" class="page-404__link">Перейти в каталог</a></h2>
     </div>
     <div class="cart-active">
         <table class="cart__table">
