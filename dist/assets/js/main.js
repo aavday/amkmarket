@@ -87,39 +87,41 @@ if (!intro) {
 } // Active anchors
 
 
-if (intro && pageYOffset < intro.scrollHeight / 2) {
-  anchors.forEach(anchor => {
-    anchor.classList.remove('active');
-  });
-  document.querySelector('a[data-scroll=".intro"]').classList.add('active');
-}
-
 const catalogue = document.querySelector('.catalogue');
 const categories = document.querySelector('.categories');
 const cart = document.querySelector('.cart');
 
-if (catalogue || categories) {
-  document.querySelector('.header__nav-list-item a[href$="/kategorii"]').classList.add('active');
-} else if (cart) {
-  document.querySelector('.header__nav-list-item a[href$="/korzina"]').classList.add('active');
-} else {
-  window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-      const top = section.getBoundingClientRect().top + pageYOffset - 300;
-      const bottom = top + section.scrollHeight;
-      const scroll = window.pageYOffset;
-      const id = section.getAttribute('id');
-
-      if (scroll > top && scroll < bottom) {
-        anchors.forEach(anchor => {
-          anchor.classList.remove('active');
-        });
-        document.querySelector(`a[data-scroll=".${id}"]`).classList.add('active');
-      }
+window.onload = function () {
+  if (intro && pageYOffset < intro.scrollHeight / 2) {
+    anchors.forEach(anchor => {
+      anchor.classList.remove('active');
     });
-  });
-} // Slider
+    document.querySelector('a[data-scroll=".intro"]').classList.add('active');
+  }
+
+  if (catalogue || categories) {
+    document.querySelector('.header__nav-list-item a[href$="/kategorii"]').classList.add('active');
+  } else if (cart) {
+    document.querySelector('.header__nav-list-item a[href$="/korzina"]').classList.add('active');
+  } else {
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top + pageYOffset - 300;
+        const bottom = top + section.scrollHeight;
+        const scroll = window.pageYOffset;
+        const id = section.getAttribute('id');
+
+        if (scroll > top && scroll < bottom) {
+          anchors.forEach(anchor => {
+            anchor.classList.remove('active');
+          });
+          document.querySelector(`a[data-scroll=".${id}"]`).classList.add('active');
+        }
+      });
+    });
+  }
+}; // Slider
 
 
 if (document.querySelector('.intro__slider')) {
