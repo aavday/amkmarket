@@ -29,7 +29,7 @@
                 </ul>
             </nav>
             <a href="https://yandex.ru/maps/?pt=52.361621,55.688472&z=12&l=map"><?php the_field('location', 15); ?></a>
-            <div class="footer__made-by my-2">Дизайн, создание и поддержка: Авдеев Алексей <a href="mailto:avdey@avday.ru">avdey@avday.ru</a></div>
+            <div class="footer__made-by my-2">Дизайн, создание и поддержка: Авдеев Алексей <a href="mailto:avdey@avday.ru">avdey@avdey.su</a></div>
             <div class="footer__copyright"><?php the_field('copyright', 15); ?></div>
             <p class="font-small">
                 <?php the_field('not_offer', 15); ?>
