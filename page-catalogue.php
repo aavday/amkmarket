@@ -59,11 +59,12 @@ Template name: Каталог
 
                                 foreach( $posts as $post ){
                                     setup_postdata($post);
+                                    $thumb = get_field('product_thumb');
                                     ?>
 
                                     <tr class="catalogue__table-item">
                                         <td class="catalogue__table-item-thumb">
-                                            <div style="background-image: url('<? the_field('product_thumb'); ?>');" alt=""></div>
+                                            <div style="background-image: url('<?=$thumb['sizes']['thumbnail']; ?>');" alt=""></div>
                                         </td>
                                         <td class="catalogue__table-item-name">
                                             <? the_field('product_name'); ?>
