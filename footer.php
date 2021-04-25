@@ -39,6 +39,7 @@
 
     <script src="<?php echo bloginfo('template_url'); ?>/libs/tiny-slider/dist/min/tiny-slider.js"></script>
     <script src="<?php echo bloginfo('template_url'); ?>/libs/lightgallery.js/dist/js/lightgallery.min.js"></script>
+    <script src="<?php echo bloginfo('template_url'); ?>/libs/lightbox/dist/js/lightbox.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJMLH69HTC"></script>
     <script>

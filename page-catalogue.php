@@ -135,8 +135,11 @@ Template name: Каталог
                                     <?
                                         $images = acf_photo_gallery('product_imgs', $post->ID);;
                                         foreach($images as $image):
+                                            $imageId = $image["id"];
+                                            $imageUrl = wp_get_attachment_image_url($imageId, array(768, 576));
                                             ?>
-                                            <span class="catalogue__info-img"><? echo $image["full_image_url"] ?></span>
+                                            <span class="catalogue__info-img"><?=$imageUrl?></span>
+                                            <span class="catalogue__info-img-full"><?=$image['full_image_url']?></span>
                                             <?
                                         endforeach;
                                     ?>

@@ -371,7 +371,7 @@ const catalogueCardPrice = document.querySelector('.catalogue__card-price');
 const catalogueCardDescription = document.querySelector('.catalogue__card-description');
 const catalogueCardAmount = document.querySelector('.catalogue__card-add-to-cart-amount');
 
-const updateCard = (itemArticle, itemName, itemImgsArray, itemPrice, itemDescription) => {
+const updateCard = (itemArticle, itemName, itemImgsArray, itemFullImgsArray, itemPrice, itemDescription) => {
   catalogueCardAmount.value = 1;
   catalogueCardEmpty.classList.add('d-none');
   catalogueCardContent.classList.remove('d-none');
@@ -389,12 +389,18 @@ const updateCard = (itemArticle, itemName, itemImgsArray, itemPrice, itemDescrip
 
   const catalogueCardImgsSlider = document.querySelector('.catalogue__card-imgs-slider');
 
+  let i = 0;
+
   itemImgsArray.forEach(img => {
     catalogueCardImgsSlider.innerHTML += `
       <div class="item">
-        <img src="${img}" alt="" class="catalogue__card-img">
+        <a href="${itemFullImgsArray[i]}" data-lightbox="gallery">
+          <img src="${img}" alt="" class="catalogue__card-img">
+        </a>
       </div>
     `;
+
+    i++;
   });
 
   catalogueImgsSliderInit();
@@ -407,6 +413,7 @@ const itemsAddListener = () => {
   let itemArticle = '';
   let itemName = '';
   let itemImgsArray = [];
+  let itemFullImgsArray = [];
   let itemPrice = '';
   let itemDescription = '';
 
@@ -429,10 +436,16 @@ const itemsAddListener = () => {
           itemImgs.forEach(img => {
             itemImgsArray.push(img.textContent);
           });
+
+          let itemFullImgs = item.querySelectorAll('.catalogue__info-img-full');
+          itemFullImgsArray = [];
+          itemFullImgs.forEach(img => {
+            itemFullImgsArray.push(img.textContent);
+          });
         };
       });
 
-      updateCard(itemArticle, itemName, itemImgsArray, itemPrice, itemDescription);
+      updateCard(itemArticle, itemName, itemImgsArray, itemFullImgsArray, itemPrice, itemDescription);
     });
   });
 };

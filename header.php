@@ -14,6 +14,7 @@
     <link rel="preload" href="<?php echo bloginfo('template_url'); ?>/dist/assets/fonts/Montserrat-BlackItalic-min.woff" as="font" type="font/woff" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/c0475dd5ed.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/libs/lightgallery.js/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/libs/lightbox/dist/css/lightbox.min.css">
     <?php wp_head(); ?>
 </head>
 <body>
