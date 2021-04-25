@@ -150,6 +150,7 @@ const catalogueImgsSliderInit = () => {
   const catalogueImgsSlider = tns({
     container: '.catalogue__card-imgs-slider',
     items: 1,
+    loop: false,
     autoplay: false,
     autoplayButtonOutput: false,
     controls: false,
