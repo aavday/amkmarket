@@ -471,27 +471,31 @@ if (cart) {
 
   checkIfCartEmpty();
   const items = JSON.parse(localStorage.getItem('cart-items'));
-  items.forEach(item => {
-    cartTable.innerHTML += `
-      <tr class="cart__table-item">
-        <td class="cart__table-item-name">
-            ${item.name}
-        </td>
-        <td class="cart__table-item-article">
-            ${item.article}
-        </td>
-        <td class="cart__table-item-price">
-            ${item.price}<i class="ml-1 fas fa-ruble-sign"></i>
-        </td>
-        <td class="cart__table-item-quantity">
-          <input type="number" class="cart__table-item-quantity-input" name="amount" value="${item.amount}" min="1">
-        </td>
-        <td class="cart__table-item-delete">
-          <i class="fas fa-times"></i>
-        </td>
-      </tr>
-    `;
-  });
+
+  if (items) {
+    items.forEach(item => {
+      cartTable.innerHTML += `
+        <tr class="cart__table-item">
+          <td class="cart__table-item-name">
+              ${item.name}
+          </td>
+          <td class="cart__table-item-article">
+              ${item.article}
+          </td>
+          <td class="cart__table-item-price">
+              ${item.price}<i class="ml-1 fas fa-ruble-sign"></i>
+          </td>
+          <td class="cart__table-item-quantity">
+            <input type="number" class="cart__table-item-quantity-input" name="amount" value="${item.amount}" min="1">
+          </td>
+          <td class="cart__table-item-delete">
+            <i class="fas fa-times"></i>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
   const cartTableItems = document.querySelectorAll('.cart__table-item');
   cartTableItems.forEach(item => {
     const itemAmount = item.querySelector('.cart__table-item-quantity');
