@@ -18,7 +18,34 @@
     <?php wp_head(); ?>
 </head>
 <body>
-
+    <div class="preloader">
+        <div class="boxes">
+            <div class="box">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="box">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="box">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="box">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>  
+    </div>
     <header class="header">
         <div class="burger d-xl-none d-block">
             <div class="burger__item"></div>
