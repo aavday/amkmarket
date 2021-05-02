@@ -19,32 +19,7 @@
 </head>
 <body>
     <div class="preloader">
-        <div class="boxes">
-            <div class="box">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div class="box">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div class="box">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div class="box">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>  
+        <div class="loader"></div>
     </div>
     <header class="header">
         <div class="burger d-xl-none d-block">
